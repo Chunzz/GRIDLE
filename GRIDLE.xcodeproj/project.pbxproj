@@ -20,6 +20,7 @@
 		C52EA65527D0AD1200A42AAE /* Keyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = C52EA65427D0AD1200A42AAE /* Keyboard.xib */; };
 		C52EA65D27D0AE8100A42AAE /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EA65C27D0AE8100A42AAE /* Keyboard.swift */; };
 		C52EA65F27D0AF0500A42AAE /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EA65E27D0AF0500A42AAE /* GridViewController.swift */; };
+		C52EA66327D0B66800A42AAE /* Handy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52EA66227D0B66800A42AAE /* Handy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		C52EA65427D0AD1200A42AAE /* Keyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Keyboard.xib; sourceTree = "<group>"; };
 		C52EA65C27D0AE8100A42AAE /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		C52EA65E27D0AF0500A42AAE /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
+		C52EA66227D0B66800A42AAE /* Handy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				C52EA65C27D0AE8100A42AAE /* Keyboard.swift */,
 				C52EA63127D092BF00A42AAE /* Main.storyboard */,
 				C52EA65E27D0AF0500A42AAE /* GridViewController.swift */,
+				C52EA66227D0B66800A42AAE /* Handy.swift */,
 				C52EA63727D092C100A42AAE /* Assets.xcassets */,
 				C52EA63927D092C100A42AAE /* LaunchScreen.storyboard */,
 				C52EA63C27D092C100A42AAE /* Info.plist */,
@@ -235,6 +238,7 @@
 				C52EA62C27D092BF00A42AAE /* AppDelegate.swift in Sources */,
 				C52EA65F27D0AF0500A42AAE /* GridViewController.swift in Sources */,
 				C52EA65D27D0AE8100A42AAE /* Keyboard.swift in Sources */,
+				C52EA66327D0B66800A42AAE /* Handy.swift in Sources */,
 				C52EA63627D092BF00A42AAE /* GRIDLE.xcdatamodeld in Sources */,
 				C52EA62E27D092BF00A42AAE /* SceneDelegate.swift in Sources */,
 			);

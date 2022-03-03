@@ -11,6 +11,8 @@ import UIKit
 // and thus must contain the keyWasTapped method
 protocol KeyboardDelegate: AnyObject {
     func keyWasTapped(character: String)
+    func cancelKeyboard()
+    func confirmKeyboard()
 }
 
 class Keyboard: UIView {
@@ -44,6 +46,15 @@ class Keyboard: UIView {
         // When a button is tapped, send that information to the
         // delegate (ie, the view controller)
         self.delegate?.keyWasTapped(character: sender.titleLabel!.text!) // could alternatively send a tag value
+//        self.delegate?.
+        
     }
 
+    @IBAction func cancelAction(_ sender: Any) {
+        self.delegate?.cancelKeyboard()
+    }
+    
+    @IBAction func confirmAction(_ sender: Any) {
+        self.delegate?.confirmKeyboard()
+    }
 }
