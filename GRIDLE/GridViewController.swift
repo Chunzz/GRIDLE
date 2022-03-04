@@ -8,17 +8,45 @@
 import UIKit
 
 class GridViewController: UIViewController, KeyboardDelegate {
-
+    var timer : Timer?
+    @IBOutlet weak var timerLabel: UILabel!
+    var counter = 0
     @IBAction func doneAction(_ sender: Any) {
         animateOut(desiredView: popupView)
         animateOut(desiredView: blurView)
         self.navigationController?.popViewController(animated: true)
+        timer?.invalidate()
+        timer = nil
     }
     @IBOutlet var popupView: UIView!
     @IBOutlet var blurView: UIVisualEffectView!
     @IBOutlet var gridView: UIView!
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        if isMovingFromParent{
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    @objc func processTimer() {
+        counter += 1
+        print("This is a second ", counter)
+        
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .abbreviated
+
+        let formattedString = formatter.string(from: TimeInterval(counter))!
+        print(formattedString)
+        
+        timerLabel.text = "Timer: " + formattedString
+
+    }
+    
     override func viewDidLoad() {
             super.viewDidLoad()
+            timer = Timer.scheduledTimer(timeInterval:1, target:self, selector:#selector(processTimer), userInfo: nil, repeats: true)
 
             // initialize custom keyboard
             let keyboardView = Keyboard(frame: CGRect(x: 0, y: 0, width: 0, height: 300))
