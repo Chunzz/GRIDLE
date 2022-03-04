@@ -9,6 +9,14 @@ import UIKit
 
 class GridViewController: UIViewController, KeyboardDelegate {
 
+    @IBAction func doneAction(_ sender: Any) {
+        animateOut(desiredView: popupView)
+        animateOut(desiredView: blurView)
+        self.navigationController?.popViewController(animated: true)
+    }
+    @IBOutlet var popupView: UIView!
+    @IBOutlet var blurView: UIVisualEffectView!
+    @IBOutlet var gridView: UIView!
     override func viewDidLoad() {
             super.viewDidLoad()
 
@@ -18,7 +26,9 @@ class GridViewController: UIViewController, KeyboardDelegate {
 
             // replace system keyboard with custom keyboard
             textField.inputView = keyboardView
-            
+        blurView.bounds = self.view.bounds
+        
+        popupView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width * 0.9, height: self.view.bounds.height*0.4)
             //Looks for single or multiple taps.
 //             let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
@@ -26,6 +36,8 @@ class GridViewController: UIViewController, KeyboardDelegate {
             //tap.cancelsTouchesInView = false
 
 //            view.addGestureRecognizer(tap)
+        
+
         
         }
 
@@ -43,9 +55,73 @@ class GridViewController: UIViewController, KeyboardDelegate {
     
     func confirmKeyboard(){
         dismissKeyboard()
+        let solutionOne = textField.text
+        if solutionOne != "2" {
+            textField.deleteBackward()
 
+//            let anim = CAKeyframeAnimation( keyPath:"transform" );
+//            anim.values = [
+//                NSValue( caTransform3D:CATransform3DMakeTranslation(-5, 0, 0 ) ),
+//                NSValue( caTransform3D:CATransform3DMakeTranslation( 5, 0, 0 ) )
+//            ]
+//            anim.autoreverses = true
+//            anim.repeatCount = 2
+//            anim.duration = 7/100
+//
+//            gridView.layer.add( anim, forKey:nil )
+            
+            
+            
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.07
+            animation.repeatCount = 4
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: gridView.center.x - 10, y: gridView.center.y))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: gridView.center.x + 10, y: gridView.center.y))
+//            let animationColor = CABasicAnimation(keyPath: "backgroundColor")
+//            animationColor.fromValue = UIColor.red
+//            animationColor.toValue = UIColor.blue
+            
+            
+            UIView.animate(withDuration: 0.5) {
+                self.gridView.layer.backgroundColor = UIColor.red.cgColor
+                self.gridView.layer.backgroundColor = UIColor.white.cgColor
+            }
+            
+            gridView.layer.add(animation, forKey: "position")
+//            gridView.layer.add(animation, forKey: "backgroundColor")
+
+        } else {
+            animateIn(desiredView: blurView)
+            animateIn(desiredView: popupView)
+        }
+        print(solutionOne)
     }
     
+    func animateIn(desiredView: UIView){
+        let backgroundView = self.view!
+        backgroundView.addSubview(desiredView)
+        
+        desiredView.transform = CGAffineTransform(scaleX: 1.2, y:1.2)
+        desiredView.alpha = 0
+        desiredView.center = backgroundView.center
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            desiredView.transform = CGAffineTransform(scaleX: 1.0, y:1.0)
+            desiredView.alpha = 1
+        })
+    }
+    
+    func animateOut(desiredView: UIView){
+        UIView.animate(withDuration: 0.3, animations: {
+            desiredView.transform = CGAffineTransform(scaleX: 1.2, y:1.2)
+            desiredView.alpha = 0
+        }, completion: { _ in
+            desiredView.removeFromSuperview()
+        })
+        
+        
+    }
     
     
     //Calls this function when the tap is recognized.
@@ -64,5 +140,7 @@ class GridViewController: UIViewController, KeyboardDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+    
+
 
 }
